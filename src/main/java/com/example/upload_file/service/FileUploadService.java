@@ -16,4 +16,6 @@ public interface FileUploadService {
     public void deleteAll();
 
     public Stream<Path> loadAll();
+
+    public String checkFileType(String filename);
 }

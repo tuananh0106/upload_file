@@ -52,4 +52,14 @@ public class FilesController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
+    @GetMapping("/preview-file/{filename:.+}")
+    public ResponseEntity<Resource> getPreviewFile(@PathVariable(name = "filename") String filename) {
+        Resource file = fileUploadService.load(filename);
+        String fileType = fileUploadService.checkFileType(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_TYPE, fileType)
+                .body(file);
+    }
 }

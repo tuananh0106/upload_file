@@ -70,4 +70,17 @@ public class FileUploadServiceImpl implements FileUploadService {
             throw new RuntimeException("Could not load the files!");
         }
     }
+
+    @Override
+    public String checkFileType(String filename) {
+        if (filename.endsWith(".jpg") || filename.endsWith(".jpeg")) {
+            return "image/jpeg";
+        } else if (filename.endsWith(".png")) {
+            return "image/png";
+        } else if (filename.endsWith(".pdf")) {
+            return "application/pdf";
+        } else {
+            return "application/octet-stream"; // Loại nội dung mặc định
+        }
+    }
 }
