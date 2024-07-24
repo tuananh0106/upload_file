@@ -58,6 +58,16 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
 
     @Override
+    public String loadAsText(String filename) {
+        try {
+            Path file = root.resolve(filename);
+            return new String(Files.readAllBytes(file));
+        } catch (IOException e) {
+            throw new RuntimeException("FAIL!");
+        }
+    }
+
+    @Override
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(root.toFile());
     }

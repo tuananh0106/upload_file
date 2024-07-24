@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>File Preview</title>
+</head>
+<body>
+  <h1>Preview of file: <span th:text="${filename}"></span></h1>
+
+<!--  <div th:if="${#strings.endsWith(filename, '.txt')}">-->
+  <div>
+    <pre th:text="${fileContentAsText}"></pre>
+  </div>
+
+  <div th:if="${#strings.endsWith(filename, '.jpg') or #strings.endsWith(filename, '.png')}">
+    <img th:src="@{/files/{filename}(filename=${filename})}" alt="Image Preview"/>
+  </div>
+</body>
+</html>
